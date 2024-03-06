@@ -4,8 +4,9 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const fetchuser = require('../middleware/fetchUser')
+const fetchuser = require('../middleware/fetchUser');
 
+// write it in .env.local file which increase the security of password 
 const JWT_SECRET = "Pranjalisagoodgir$l";
 
 
@@ -48,7 +49,7 @@ router.post('/createuser', [
         res.json({ authtoken });
 
     } catch (error) {
-        console.error(result.message);
+        console.error(error.message);
         res.status(500).send("Internal Server Error")
     }
 })
@@ -85,7 +86,7 @@ router.post('/login', [
         const authtoken = jwt.sign(data, JWT_SECRET);
         res.json({ authtoken });
     } catch (error) {
-        console.error(result.message);
+        console.error(error.message);
         res.status(500).send("Internal Server Error");
     }
 
@@ -99,7 +100,7 @@ router.post('/getuser', fetchuser, async (req, res) => {
         const user = await User.findById(userid).select("-password");
         res.send(user);
     } catch (error) {
-        console.error(result.message);
+        console.error(error.message);
         res.status(500).send("Internal Server Error");
     }
 })
