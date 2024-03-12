@@ -33,7 +33,8 @@ const NoteState = (props) => {
             },
             body: JSON.stringify({title, description, tag}), // body data type must match "Content-Type" header
         });
-        // const json =  response.json(); 
+        const json =  await response.json();
+        console.log(json);
 
         console.log("Adding a New Note");
         const note = {
@@ -70,14 +71,15 @@ const NoteState = (props) => {
     const editNote = async (_id, title, description, tag) => {
         // API Call
         const response = await fetch(`${host}/api/notes/updatenote/${_id}`, {
-            method: "POST", 
+            method: "PUT", 
             headers: {
                 "Content-Type": "application/json",
                 "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjVlNTZjYjFhY2VlM2QwMGM3NGY3MTg1In0sImlhdCI6MTcwOTcwNjA4NX0.zxurVV5FRK27Dbel-ZvQXodbhAGwsMmKJ6pZKCJu790"
             },
             body: JSON.stringify({title, description, tag}),
         });
-        const json =  response.json(); 
+        const json =  await response.json();
+        console.log(json);
 
     // Logic to edit in client side
     for (let index = 0; index < notes.length; index++) {
