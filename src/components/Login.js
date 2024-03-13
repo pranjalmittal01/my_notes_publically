@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [credentials, setCredentials] = useState({email: "", password: ""});
-    let navigate = useNavigate()
+    let navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -40,7 +40,7 @@ const Login = () => {
                         <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
-                    <label for="password" className="form-label">Password</label>
+                    <label htmlFor="password" className="form-label">Password</label>
                     <input type="password" className="form-control" value={credentials.password} id="password" name='password' onChange={onChange} />
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
